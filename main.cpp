@@ -4,22 +4,40 @@
 #include "linkedlist.h"
 
 
-using namespace std;
+linkedlist* create_linkedlist(linkedlist* s)
+{
 
-void homework1_linked_list();
+    ifstream ikra("input.txt");
+    char letter;
+    
+    if(ikra.is_open())
+    {
+        while (ikra.get(letter))
+        {
+            if(letter != '\n')
+            {
+                s->addNode(letter);
+            }
+        };
+        ikra.close();
+    }
+    return s;
+}
 
-void homework1_linkedl_list()
+void homework_1()
 {
     linkedlist* s = new linkedlist();
-    
-    s->addNode(7);
-    s->addNode(8);
-    s->addNode(9);
 
+    create_linkedlist(s);
+    
+    s->printList();
 }
 
 int main()
 {
-    homework1_linked_list();
+    homework_1();
+    
     return EXIT_SUCCESS;
 }
+
+

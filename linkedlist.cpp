@@ -32,3 +32,36 @@ node* linkedlist::findLastNode()
     }
     return p;
 }
+
+void linkedlist::reorderList()
+{
+    node* p = head;
+
+    while (p->get_next() != NULL)
+    {
+        if(p->get_data() )
+    }
+} 
+
+/*void linkedlist::removeDublicates()
+{
+    node* p = head;
+
+    while ()
+    {
+        /* code */
+    }
+    
+} */
+
+
+void linkedlist::printList()
+{
+    node* p = head;
+
+    while (p != NULL)
+    {
+        cout<<p->get_data()<<endl;
+        p=p->get_next();
+    }
+}

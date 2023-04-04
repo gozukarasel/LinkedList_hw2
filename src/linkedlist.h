@@ -14,6 +14,5 @@ public:
     void reorderList();
     void removeDublicates();
     void reverseList();
+    void printList();
 };
-
-

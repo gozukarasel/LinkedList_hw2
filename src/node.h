@@ -6,9 +6,9 @@ class node
 {
     private:
         node* next;
-        int data;
+        char data;
     public:
-        node(int data);
+        node(char);
         ~node();
         int get_data();
         node* get_next();
@@ -16,4 +16,3 @@ class node
         void set_data(int newData);
         void set_next(node* newNext);
 };
-
