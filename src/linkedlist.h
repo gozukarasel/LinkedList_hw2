@@ -15,4 +15,6 @@ public:
     void removeDublicates();
     void reverseList();
     void printList();
+    int nodeCounter();
+    void index();
 };
