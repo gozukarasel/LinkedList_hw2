@@ -16,5 +16,4 @@ public:
     void reverseList();
     void printList();
     int nodeCounter();
-    void index();
 };

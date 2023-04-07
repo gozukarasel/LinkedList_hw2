@@ -10,7 +10,6 @@ linkedlist* create_linkedlist(linkedlist* s)
     ifstream ikra("input.txt");
     char letter;
     
-    
     if(ikra.is_open())
     {
         while (ikra.get(letter))
@@ -19,7 +18,7 @@ linkedlist* create_linkedlist(linkedlist* s)
             {
                 s->addNode(letter);
             }
-        };
+        }
         s->index();
         ikra.close();
     }
@@ -31,16 +30,17 @@ void homework_1()
     linkedlist* s = new linkedlist();
 
     create_linkedlist(s);
-    
-    cout<<"before operation 1"<<endl;
-    s->printList();
-
+    /**/
     s->reorderList();
-
-    cout <<"after operation 1"<<endl;
+    s->printList();
+    /**/
+    s->removeDublicates();
+    s->printList();
+    /**/
+    s->reverseList();
     s->printList();
 
-
+    delete s;
 }
 
 int main()
@@ -49,9 +49,4 @@ int main()
     
     return EXIT_SUCCESS;
 }
-
-
-
-
-
 

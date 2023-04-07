@@ -5,7 +5,7 @@
 
 linkedlist::linkedlist()
 {
-    this->head=NULL;
+    this->head = NULL;
 }
 
 void linkedlist::addNode(int data)
@@ -25,22 +25,6 @@ void linkedlist::addNode(int data)
     }
 }
 
-void linkedlist::index()
-{
-    node* p = head;
-
-    int index=1;
-
-    while(p->get_next() != NULL)
-    {
-        p->set_index(index);
-        index ++;
-        p=p->get_next();
-    };
-    
-    p->set_index(index); // p->get_next = tail;
-}
-
 node* linkedlist::findLastNode()
 {
     node* p = head;
@@ -52,46 +36,83 @@ node* linkedlist::findLastNode()
     return p;
 }
 
-void linkedlist::reorderList()
+void linkedlist::reorderList() 
 {
 
-    node* p = head;
-    node* temp_node = findLastNode();
-    int counter =  temp_node->get_index();
-
-    for (int step = 0; step<(counter - 1); ++step)
+    node* temp_node = NULL; // pointer to the last node that was swapped
+    bool swapped =true;
+    
+    if (!head)
     {
-        int swapped = 0;
+        return;
+    }
+    while(swapped == true)
+    {
+        node* p = head;
+        swapped=!swapped;
         
-        for(int i=0; i< counter-step-1; i++)
+        while(p->get_next() != temp_node)
         {
-            if(p->get_data() > p->get_next()->get_data())
+            if (p->get_data() > p->get_next()->get_data())
             {
-                node* tempnode = p;
-                p = p->get_next();
-                p->set_next(tempnode);
-                swapped = 1;
+                int temp_data = p->get_data();
+                p->set_data(p->get_next()->get_data());
+                p->get_next()->set_data(temp_data);
+                swapped=true;
             }
+            p=p->get_next();
             
         }
-        if(swapped == 0)
-        {
-            break;
-            cout<<"list is sorted";
-        }
-
-    }
+        temp_node=p;
+    } 
+    while (swapped);
 } 
-
+void linkedlist::removeDublicates()
+{
+    node* p = head;
+    node* temp_node;
+    
+    while (p != NULL)
+    {
+        if (p->get_data() == p->get_next()->get_data() && p->get_next() != findLastNode())
+        {   
+            temp_node = p->get_next();
+            p->set_next(p->get_next()->get_next());
+            delete temp_node;
+        }
+        else if(p->get_data() == p->get_next()->get_data() && p->get_next() == findLastNode())
+        {
+            temp_node = p->get_next();
+            p->set_next(NULL);
+            delete temp_node;
+        }
+        p=p->get_next();
+    }
+}
 
 void linkedlist::printList()
 {
     node* p = head;
-
+    
     while (p != NULL)
     {
         cout<<p->get_data()<<endl;
         p=p->get_next();
     }
 }
+void linkedlist::reverseList()
+{
+    node* prev = NULL;
+    node* current = head;
+    node* next = NULL;
 
+    while (current != NULL)
+    {
+        next = current->get_next();
+        current->set_next(prev);
+        prev = current;
+        current = next;
+    }
+    head=prev;
+    
+}
